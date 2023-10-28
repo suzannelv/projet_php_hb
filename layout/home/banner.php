@@ -1,5 +1,5 @@
 
-<section class="container bg-white dark:bg-gray-900 mx-auto">
+<div class="bg-white dark:bg-gray-900 mx-auto">
     <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-4 lg:gap-16">
         <div class="flex flex-col justify-center">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Lolanguages : <br>Le Plaisir de l'Apprentissage</h1>
@@ -11,11 +11,12 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                     </svg>
                 </a>
-              
+            
             </div>
         </div>
         <div>
-          <iframe width="100%" height="400px" src="https://www.youtube.com/embed/oXwNwVMsRi0?si=Lv6DPBkL5eFPgbcC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/oXwNwVMsRi0?si=Lv6DPBkL5eFPgbcC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
-</section>
+</div>
+
