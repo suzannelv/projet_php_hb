@@ -3,9 +3,17 @@ require_once __DIR__ . "/layout/head.php";
 require_once __DIR__ . "/classes/Course.php";
 require_once __DIR__ . '/functions/db.php';
 
-$pdo = getConnection();
-$course = new Course($pdo);
-$courseDetail = $course->getCourseDetails(38);
+
+try {
+    $pdo = getConnection();
+    $course = new Course($pdo);
+    $courseDetail = $course->getCourseDetails(38);
+    var_dump($courseDetail);
+} catch(PDOException $e) {
+    echo $e->getMessage();
+}
+
+
 ?> 
 <main class="mx-auto text-center">
   <h2 class="text-3xl font-bold py-8 my-10">Aperçu du cours</h2>
