@@ -20,10 +20,10 @@ $courseDetail = $course->getCourseDetails(1, $id);
 var_dump($courseDetail);
 ?>
 
-<main class="flex bg-slate-200 mx-auto"> 
-     <!-- partie gauche -->
-    <div class="left flex-1 mx-20">
-      <div class="my-3 gap-1 flex flex-wrap">
+<main class="bg-gradient-to-b from-blue-100 to-transparent dark:from-blue-900"> 
+     <!-- partie top -->
+    <div class="top mx-20">
+      <div class="my-3 gap-1 flex flex-wrap pt-12">
         <!-- tag des cours -->
         <?php
         foreach ($courseDetail[0]['tags'] as $tag) { ?>
@@ -54,17 +54,36 @@ var_dump($courseDetail);
           <span class="font-semibold">Langue : </span><?php echo $courseDetail[0]['language']; ?>
         </div>
       </div>
-
-
-
-      <!-- vidéo du cours  -->
-      <iframe class="w-[750px] h-[450px] border border-gray-200 rounded-lg dark:border-gray-700" src="https://www.youtube.com/embed/<?php echo $courseDetail[0]['videoUrl']; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 
-<!-- partie droite -->
-    <div class="right flex-1">
+    <div class="flex flex-col md:flex-row mx-20">
+      <div class="w-full md:w-8/12">
+        <!-- vidéo du cours  -->
+        <iframe class="w-[750px] h-[450px] border border-gray-200 rounded-lg dark:border-gray-700" src="https://www.youtube.com/embed/<?php echo $courseDetail[0]['videoUrl']; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
 
+
+      <div class="w-full md:w-4/12 mx-auto felx flex-cols justify-center border border-gray-200 rounded-lg shadow ">
+        <div class="card-teacher">
+          <img class="h-36 w-36 rounded-full object-cover" src="https://img.freepik.com/photos-gratuite/jeune-femme-seduisante-souriante-se-sentant-bonne-sante-cheveux-au-vent_176420-37515.jpg?t=st=1698606721~exp=1698607321~hmac=b0455ddac3937ccb24ffb750a8547ecd4ba89430d2a0abe4a47de512a7c1dd3c" alt="">
+        </div>
+        <p class="text-xl font-semibold text-start my-6">Créé par : <?php echo $courseDetail[0]['teacher']; ?></p>
+
+        <p class="text-xl font-semibold text-start my-6">Mise en ligne : <?php echo $courseDetail[0]['dateOnline']; ?></p>
+
+        <p class="text-xl font-semibold text-start my-6">Langue : <?php echo $courseDetail[0]['language']; ?></p>
+        <a type="button" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">
+          Connectez-vous pour vous inscrire
+        </a>
+   
+
+      </div>
+      
     </div>
+      
+  
+
+
 </main>
 
 

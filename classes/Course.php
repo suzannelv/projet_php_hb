@@ -49,7 +49,8 @@ class Course
               'videoUrl' => $row['video_url'],
               'dateOnline' => $row['date_online'],
               'level' => $this->courseLevel->getCourseLevel($row['level_id']),
-              'teacher' => $this->teacherInfo->getTeacherInfo($row['teacher_id']),
+              'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
+            //   'teacherProfile'=>$this->teacherInfo->getProfilImg($row['profile']),
               'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
               'tags' => $this->tag->getCourseTags($row['id_course'])
 
