@@ -32,11 +32,15 @@ class Course
         $sql .= " LIMIT " . $limit;
 
         $stmt = $this->pdo->prepare($sql);
+        // $stmtParams = [];
 
         if ($courseId !== null) {
-            $stmt->execute(['courseId' => $courseId]);
+            $stmt->bindValue('courseId', $courseId);
+            //$stmtParams['courseId'] = $courseId;
         }
 
+        // $stmt->execute($stmtParams);
+        $stmt->execute();
         $courses = [];
 
         while ($row = $stmt->fetch()) {
@@ -50,7 +54,7 @@ class Course
               'dateOnline' => $row['date_online'],
               'level' => $this->courseLevel->getCourseLevel($row['level_id']),
               'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
-            //   'teacherProfile'=>$this->teacherInfo->getProfilImg($row['profile']),
+              'teacherProfile'=>$this->teacherInfo->getProfilImg($row['teacher_id']),
               'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
               'tags' => $this->tag->getCourseTags($row['id_course'])
 
