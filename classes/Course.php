@@ -9,6 +9,7 @@ require_once __DIR__ . '/TeacherInfo.php';
 
 class Course
 {
+    // private $id;
     private $tag;
     private $courseLevel;
     private $courseLanguage;
@@ -20,6 +21,11 @@ class Course
         $this->courseLanguage = new CourseLanguage($pdo);
         $this->teacherInfo = new TeacherInfo($pdo);
     }
+
+    // public function getID(): int
+    // {
+    //     return $this->id;
+    // }
 
     public function getCourseDetails(int $limit, $courseId = null): array
     {

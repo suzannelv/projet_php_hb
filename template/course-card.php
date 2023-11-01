@@ -1,4 +1,10 @@
 <?php
+require_once __DIR__ . '/../classes/Utils.php';
+require_once __DIR__ .'/../classes/Chapiter.php';
+// $chapiter = new Chapiter($pdo);
+// $totalDuration = $chapiter->getTotalCourseDuration($id);
+// $minuteToHour = Utils::minuteToHour($totalDuration);
+
 foreach ($courseDetail as $item) { ?>
   
 <div class="w-full h-[520px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative" data-aos="fade-up" data-aos-duration="2000">
@@ -30,7 +36,7 @@ foreach ($courseDetail as $item) { ?>
         <div class="absolute text-start left-0 bottom-O ml-5 mb-2">
             <!-- revoir le calcul total de cours dans les chapitres  -->
             <p class="text-md font-semibold text-gray-900 
-            dark:text-white">Duration : <?php echo "20h" ?></p>
+            dark:text-white">Duration : <?php echo "20H"; ?></p>
             <p class="text-md font-semibold text-gray-900 
             dark:text-white">Date Mise en ligne: <br>
              <?php echo $item['dateOnline'] ?>

@@ -8,8 +8,7 @@ try {
     $pdo = getConnection();
     $course = new Course($pdo);
     $courseDetail = $course->getCourseDetails(38);
-    var_dump($courseDetail);
-} catch(PDOException $e) { 
+} catch(PDOException $e) {
     echo $e->getMessage();
 }
 

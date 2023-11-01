@@ -17,7 +17,7 @@ require_once __DIR__ . "/../data/filterMenuItem.php"
         <span class="text-lg font-semibold"><?php echo $key ?></span>
       </li>
       <?php foreach($item as $option) {?>
-        <li class="hover:text-slate-400"> <?php echo $option ?> </li>
+        <li class="hover:text-slate-400" data-category="<?php echo $key ?>" data-value="<?php echo $option ?>"> <?php echo $option ?> </li>
       <?php } ?>
     </ul>
   <?php } ?>  

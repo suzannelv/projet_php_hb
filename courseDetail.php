@@ -4,6 +4,7 @@ require_once __DIR__ . '/layout/head.php';
 require_once __DIR__ . '/functions/db.php';
 require_once __DIR__ . '/classes/Utils.php';
 require_once __DIR__ . '/classes/Course.php';
+require_once __DIR__ . '/classes/Chapiter.php';
 
 $id = $_GET['id'];
 
@@ -16,6 +17,15 @@ if(!isset($id) || !is_numeric($id)) {
 $pdo = getConnection();
 $course = new Course($pdo);
 $courseDetail = $course->getCourseDetails(1, $id);
+
+// obtenir les contenus de chapiter selon l'id de cours
+$chapiter = new Chapiter($pdo);
+$chapiterDetail = $chapiter->getChaptersDetail($id);
+$totalDuration = $chapiter->getTotalCourseDuration($id);
+$minuteToHour = Utils::minuteToHour($totalDuration);
+
+var_dump($chapiterDetail);
+
 ?>
 
 <main class="bg-gradient-to-b from-blue-100 to-transparent dark:from-blue-900"> 
@@ -44,7 +54,7 @@ $courseDetail = $course->getCourseDetails(1, $id);
         <!-- duration -->
         <div class="flex">
           <img class="mr-2 w-6 h-6 text-gray-800 dark:text-white" src="../assets/img/icon/duration.svg" aria-hidden="true" alt="Duration Icon">
-          <span class="font-semibold">Duration : </span><?php echo "20h"; ?>
+          <span class="font-semibold">Duration : </span><?php echo $minuteToHour; ?>
         </div>
         <!-- langue -->
         <div class="flex">
@@ -79,15 +89,14 @@ $courseDetail = $course->getCourseDetails(1, $id);
         <a type="button" href="register.php" class="text-gray-900 bg-[#F7BE38] hover:bg-[#F7BE38]/90 focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">
           Connectez-vous pour vous inscrire
         </a>
-   
-
       </div>
       
     </div>
-      
-  
-
-
+    <!-- chapiter content -->
+    <div class="m-20">
+      <?php require_once __DIR__ . '/layout/chapiterContent.php' ?>
+    </div>
+    
 </main>
 
 
