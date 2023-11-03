@@ -1,17 +1,22 @@
 <?php
 require_once __DIR__ . '/../../functions/db.php';
 require_once __DIR__ . '/../../classes/Course.php';
-
+// require_once __DIR__ . '/../../classes/CourseLanguage.php';
+// require_once __DIR__ . '/../../classes/CourseLevel.php';
+// require_once __DIR__ . '/../../classes/CourseTags.php';
 $pdo = getConnection();
 $course = new Course($pdo);
 $courseDetail = $course->getCourseDetails(6);
 ?>
 
 <div class="header">    
-    <div>
+    <div >
       <h2 class="text-3xl font-bold py-8 my-10">Aperçu du cours</h2>
       <!-- menu filter -->
-          <?php require_once __DIR__ . "/../filterMenu.php"; ?>
+        <div class="text-center mx-auto relative gap-4 max-w-screen-lg">
+           <?php require_once __DIR__ . "/../menuFilter.php"; ?>
+        </div>
+
       <div class="grid md:grid-cols-3 gap-4 place-items-center max-w-screen-lg mx-auto"> 
           <?php require_once __DIR__ . "/../../template/course-card.php" ?>
       </div>
@@ -38,4 +43,6 @@ $courseDetail = $course->getCourseDetails(6);
         </svg>
     </div>
 </div>
+
+
 

@@ -6,6 +6,11 @@ class CourseTags
     public function __construct(private PDO $pdo)
     {
     }
+    public function getAllTags(): array
+    {
+        $stmt = $this->pdo->query("SELECT id_tag, tag_name FROM course_tag");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getCourseTags(int $course_id): array
     {

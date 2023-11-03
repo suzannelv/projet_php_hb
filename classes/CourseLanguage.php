@@ -6,6 +6,12 @@ class CourseLanguage
     {
     }
 
+    public function getAllLanguages(): array
+    {
+        $stmt = $this->pdo->query("SELECT * FROM languages");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getLanguageName(int $lang_id): string
     {
         $stmt = $this->pdo->prepare("SELECT lang_name FROM languages WHERE id_lang = :lang_id");

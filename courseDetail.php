@@ -24,8 +24,6 @@ $chapiterDetail = $chapiter->getChaptersDetail($id);
 $totalDuration = $chapiter->getTotalCourseDuration($id);
 $minuteToHour = Utils::minuteToHour($totalDuration);
 
-var_dump($chapiterDetail);
-
 ?>
 
 <main class="bg-gradient-to-b from-blue-100 to-transparent dark:from-blue-900"> 

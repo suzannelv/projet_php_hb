@@ -6,6 +6,12 @@ class CourseLevel
     {
     }
 
+    public function getAllLevels(): array
+    {
+        $stmt = $this->pdo->query("SELECT id_level, level_name FROM level");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getCourseLevel(int $level_id): array
     {
         $stmt = $this->pdo->prepare(

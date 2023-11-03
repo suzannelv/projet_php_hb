@@ -39,8 +39,9 @@ if(!password_verify($password, $user['password'])) {
 }
 
 $_SESSION['userInfos'] = [
-  'id' => $user['id'],
-  'email' => $email
+  'id' => $user['id_user'],
+  'email' => $email,
+  'full_name'=>$user['firstname'] . ' ' . $user['lastname']
 ];
 
 Utils::redirect('account.php');
