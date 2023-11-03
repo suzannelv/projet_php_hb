@@ -17,8 +17,8 @@ try {
   <h2 class="text-3xl font-bold py-8 my-10">Aperçu du cours</h2>
 
   <!-- menu filter -->
-  <div class="px-20 pb-10">
-    <?php require_once __DIR__ . "/layout/filterMenu.php"; ?>
+  <div class="px-20 max-w-screen-lg mx-auto">
+    <?php require_once __DIR__ . "/layout/menuFilter.php"; ?>
   </div>
 
   <!-- template cours -->

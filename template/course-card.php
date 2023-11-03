@@ -15,8 +15,8 @@ foreach ($courseDetail as $item) { ?>
 
      <!-- couverture des cours -->
     
-    <div class="group">
-      <img class=" p-0 rounded-t-lg h-[230px] transition-transform transform scale-100 hover:scale-110 duration-800 overflow-hidden object-cover" src="<?php echo $item['coverImg']; ?>" alt="<?php echo $item['courseName'] ?>" />
+    <div class="relative overflow-hidden">
+      <img class="w-full p-0 rounded-t-lg h-[230px] transition-transform transform scale-100 hover:scale-110 duration-1000 object-cover" src="<?php echo $item['coverImg']; ?>" alt="<?php echo $item['courseName'] ?>" />
     </div>
     <div class="px-5 pb-5">
       <!-- tag des cours -->
@@ -26,7 +26,7 @@ foreach ($courseDetail as $item) { ?>
              <span class="text-sm font-medium px-2.5 py-0.5  rounded <?php echo $tag['tag_bg_color'] . ' ' . $tag['tag_text_color']; ?>"> 
                 <?php echo $tag['tag_name']; ?>
              </span>
-                <?php } ?>
+            <?php } ?>
         </div>
 
        <!-- title de cours -->
