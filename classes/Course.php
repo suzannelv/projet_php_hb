@@ -83,24 +83,20 @@ class Course
                 WHERE ct.tag_name = :theme
                 )";
         }
-        echo "SQL Query: " . $sql . "<br>"; // 输出 SQL 查询语句
+
         $stmt = $this->pdo->prepare($sql);
 
         if ($language) {
             $stmt->bindValue(':language', $language);
-            echo "Language Parameter: " . $language . "<br>"; // 输出筛选语言参数
         }
         if ($level) {
             $stmt->bindValue(':level', $level);
-            echo "Level Parameter: " . $level . "<br>"; // 输出筛选级别参数
         }
         if ($theme) {
             $stmt->bindValue(':theme', $theme);
-            echo "Theme Parameter: " . $theme . "<br>"; // 输出筛选主题参数
         }
 
         $stmt->execute();
-        var_dump($stmt);
         $courses = [];
 
         while ($row = $stmt->fetch()) {
@@ -117,7 +113,6 @@ class Course
                 'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
                 'tags' => $this->tag->getCourseTags($row['id_course'])
             ];
-            echo "Theme Parameter: " . $theme . "<br>"; // 输出筛选主题参数
 
             $courses[] = $courseDetails;
         }

@@ -10,8 +10,15 @@ $theme = isset($_POST['theme']) ? $_POST['theme'] : null;
 var_dump($_POST);
 
 $pdo = getConnection();
+
 $course = new Course($pdo);
 
-$courses = $course->getFilteredCourses($language, $level, $theme);
+$filterCourses = $course->getFilteredCourses($language, $level, $theme);
 
-var_dump($courses);
+if($filterCourses === null) {
+    echo 'pas de cours trouvé';
+} else {
+    foreach($filterCourses as $item) {
+        echo 'trouvé';
+    }
+}

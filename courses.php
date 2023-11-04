@@ -23,7 +23,6 @@ try {
 
   <!-- template cours -->
   <div class="grid md:grid-cols-3 gap-4 place-items-center max-w-screen-lg mx-auto"> 
-   
     <?php require_once __DIR__ . "/template/course-card.php" ?>
   </div>
 

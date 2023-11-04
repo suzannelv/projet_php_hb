@@ -3,20 +3,48 @@
 require_once 'classes/Utils.php';
 require_once 'functions/db.php';
 require_once 'classes/AppError.php';
+require_once 'classes/Email.php';
+require_once 'classes/EmailError.php';
+require_once 'classes/SpamChecker.php';
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
     Utils::redirect('register.php');
 }
 
+// 1. vérigier l'email
+
+
+try {
+    $email = new Email($_POST['email']);
+    $spamChecker = new SpamChecker();
+    if($spamChecker->isSpam($email)) {
+        throw new InvalidArgumentException(code:EmailError::SPAM);
+    }
+} catch(EmptyEmailException | InvalidArgumentException $e) {
+    Utils::redirect('register.php?error=' . $e->getCode());
+} catch(InvalidArgumentException $e) {
+    Utils::redirect('register.php?error=' . $e->getCode());
+}
+
+// 2. upload profile photo
 if (isset($_FILES['user_avatar']) && $_FILES['user_avatar']['error'] === UPLOAD_ERR_OK) {
+
     $avatar = $_FILES['user_avatar'];
     $tmpFilename = $avatar['tmp_name'];
+    // générer un nom unique
+    $bytes = random_bytes(10);
+    $filename = bin2hex($bytes);
+    $profilePicInfo = pathinfo($avatar['name'], PATHINFO_EXTENSION);
+    $filename .= '.' . $profilePicInfo;
+
+    $destination = __DIR__ . '/uploads/' . $filename;
 
     if (is_uploaded_file($tmpFilename)) {
-        move_uploaded_file($tmpFilename, __DIR__ . '/uploads/' . $avatar['name']);
+        move_uploaded_file($tmpFilename, $destination);
     }
 }
 
+// 3. connecter BDD
 try {
     $pdo = getConnection();
     $firstname = $_POST['firstname'];
@@ -41,14 +69,18 @@ try {
         'hashedPassword' => $hashedPassword,
         'birthday'       => $birthday,
         'phoneNumber'    => $phoneNumber,
-        'avatar'         => $user_avatar
+        'avatar'         => $filename
     ]);
 } catch (PDOException $e) {
     Utils::redirect('register.php?error=' . AppError::DB_CONNECTION);
 }
 
 $_SESSION['userInfos'] = [
-    'email' => $email
+
+    'email' => $email,
 ];
 
-Utils::redirect('account.php');
+
+
+Utils::redirect('registerConfirm.php?username=' . urlencode($firstname));
+exit;

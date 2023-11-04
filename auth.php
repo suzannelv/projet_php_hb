@@ -19,7 +19,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
 try {
     $pdo = getConnection();
 } catch (PDOException) {
-    Utils::redirect('login.php?error=');
+    Utils::redirect('login.php?error=' . AppError::DB_CONNECTION);
 }
 
 $query = "SELECT * FROM users WHERE email = :email";
@@ -30,19 +30,19 @@ $user = $connectStmt->fetch();
 
 // S'il n'existe pas, return early pattern
 if($user === false) {
-    Utils::redirect('login.php?error=');
+    Utils::redirect('login.php?error=' . AppError::USER_NOT_FOUND);
 }
 
 // sinon, vérifier mot de passe
 if(!password_verify($password, $user['password'])) {
-    Utils::redirect('login.php?error=');
+    Utils::redirect('login.php?error=' . AppError::INVALID_CREDENTIALS);
 }
 
 $_SESSION['userInfos'] = [
   'id' => $user['id_user'],
   'email' => $email,
   'full_name'=>$user['firstname'] . ' ' . $user['lastname'],
-//   'avatar' =>$user['avatar_url'] ? $user['avatar_url'] : null
+  'avatar' =>$user['avatar_url']
 ];
 
 Utils::redirect('account.php');
