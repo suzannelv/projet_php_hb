@@ -13,6 +13,14 @@ foreach ($courseDetail as $item) { ?>
         <?php echo $item['level']['level_name']; ?>
     </span>
 
+    <!-- like icon -->
+    <a href="#" class="like-btn">
+      <svg class="w-6 h-6 absolute z-40 top-1 right-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#adb5bd" viewBox="0 0 20 18">
+        <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z"/>
+      </svg>
+    </a>
+    
+
      <!-- couverture des cours -->
     
     <div class="relative overflow-hidden">
@@ -22,7 +30,7 @@ foreach ($courseDetail as $item) { ?>
       <!-- tag des cours -->
         <div class="text-start my-3 gap-1 flex flex-wrap">
             <?php
-            foreach ($item['tags'] as $tag) { ?>
+              foreach ($item['tags'] as $tag) { ?>
              <span class="text-sm font-medium px-2.5 py-0.5  rounded <?php echo $tag['tag_bg_color'] . ' ' . $tag['tag_text_color']; ?>"> 
                 <?php echo $tag['tag_name']; ?>
              </span>
@@ -36,7 +44,7 @@ foreach ($courseDetail as $item) { ?>
         <div class="absolute text-start left-0 bottom-O ml-5 mb-2">
             <!-- revoir le calcul total de cours dans les chapitres  -->
             <p class="text-md font-semibold text-gray-900 
-            dark:text-white">Duration : <?php echo "20H"; ?></p>
+            dark:text-white">Duration : <?php echo "20h"; ?></p>
             <p class="text-md font-semibold text-gray-900 
             dark:text-white">Date Mise en ligne: <br>
              <?php echo $item['dateOnline'] ?>
@@ -49,6 +57,4 @@ foreach ($courseDetail as $item) { ?>
 </div>
 
 <?php } ?>
-
-
 

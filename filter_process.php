@@ -11,14 +11,12 @@ var_dump($_POST);
 
 $pdo = getConnection();
 
-$course = new Course($pdo);
+$courses = new Course($pdo);
 
-$filterCourses = $course->getFilteredCourses($language, $level, $theme);
-
+$filterCourses = $courses->getFilteredCourses($language, $level, $theme);
+var_dump($filterCourses);
 if($filterCourses === null) {
     echo 'pas de cours trouvé';
 } else {
-    foreach($filterCourses as $item) {
-        echo 'trouvé';
-    }
+    echo 'trouvé';
 }

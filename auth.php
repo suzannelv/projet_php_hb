@@ -3,6 +3,7 @@
 session_start();
 require_once 'classes/Utils.php';
 require_once 'functions/db.php';
+require_once 'classes/AppError.php';
 
 
 // Vérification de la présence des données

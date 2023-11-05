@@ -25,10 +25,12 @@ try {
   <div class="grid md:grid-cols-3 gap-4 place-items-center max-w-screen-lg mx-auto"> 
     <?php require_once __DIR__ . "/template/course-card.php" ?>
   </div>
-
+<!-- 
       <a href="courses.php" class="inline-flex items-center px-3 py-2 my-10 text-sm font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Voir plus
-      </a>
+      </a> -->
+
+      <div class="mx-auto my-10 text-gray-700 text-lg">- Fin -</div>
 </main>
 
 <?php

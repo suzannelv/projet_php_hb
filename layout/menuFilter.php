@@ -77,28 +77,4 @@ foreach ($tags as $id => $tag) { ?>
     filterMenu.classList.toggle('hidden');
   });
 
-  // écouter event sur l'envoie d'une requête dans le filtrage
- // 在前端页面中，使用 JavaScript 发起 POST 请求到 filter_process.php
-fetch('filter_process.php', {
-  method: 'POST',
-  body: new URLSearchParams({
-    language: selectedLanguage,
-    level: selectedLevel,
-    theme: selectedTheme
-  }),
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  }
-})
-.then(response => response.json())
-.then(data => {
-  // 处理返回的数据并更新页面
-  // 例如，将数据展示在页面上
-  // 注意：这里的代码仅为示例，实际的代码可能需要根据你的前端框架和页面结构进行修改
-  updateCourseList(data);
-})
-.catch(error => {
-  console.error('Error:', error);
-});
-
 </script>     

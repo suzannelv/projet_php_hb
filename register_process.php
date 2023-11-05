@@ -76,7 +76,6 @@ try {
 }
 
 $_SESSION['userInfos'] = [
-
     'email' => $email,
 ];
 

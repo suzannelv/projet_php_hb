@@ -63,40 +63,34 @@ class Course
         }
         return $courses;
     }
-
     public function getFilteredCourses($language, $level, $theme): array
     {
-        $sql = "SELECT * FROM courses WHERE 1=1";
+        $sql = "SELECT c.* FROM courses c";
+
+        $parameters = [];
 
         if ($language) {
-            $sql .= " AND lang_id = :language";
+            $sql .= " INNER JOIN languages l ON c.lang_id = l.id_lang WHERE l.lang_name = :language";
+            $parameters[':language'] = $language;
         }
         if ($level) {
-            $sql .= " AND level_id = :level";
+            $sql .= " INNER JOIN level lv ON c.level_id = lv.id_level WHERE lv.level_name = :level";
+            $parameters[':level'] = $level;
         }
         if ($theme) {
-            $sql .= " AND id_course IN 
+            $sql .= " AND c.id_course IN 
                 (SELECT c.id_course
                 FROM courses c
                 INNER JOIN course_tag_asso cta ON c.id_course = cta.course_id
                 INNER JOIN course_tag ct ON cta.tag_id = ct.id_tag
                 WHERE ct.tag_name = :theme
                 )";
+            $parameters[':theme'] = $theme;
         }
 
         $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($parameters);
 
-        if ($language) {
-            $stmt->bindValue(':language', $language);
-        }
-        if ($level) {
-            $stmt->bindValue(':level', $level);
-        }
-        if ($theme) {
-            $stmt->bindValue(':theme', $theme);
-        }
-
-        $stmt->execute();
         $courses = [];
 
         while ($row = $stmt->fetch()) {
@@ -119,6 +113,5 @@ class Course
 
         return $courses;
     }
-
 
 }
