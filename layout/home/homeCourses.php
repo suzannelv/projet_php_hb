@@ -1,12 +1,15 @@
 <?php
 require_once __DIR__ . '/../../functions/db.php';
 require_once __DIR__ . '/../../classes/Course.php';
-// require_once __DIR__ . '/../../classes/CourseLanguage.php';
-// require_once __DIR__ . '/../../classes/CourseLevel.php';
-// require_once __DIR__ . '/../../classes/CourseTags.php';
+require_once __DIR__ .'/../../classes/Chapiter.php';
+
 $pdo = getConnection();
 $course = new Course($pdo);
 $courseDetail = $course->getCourseDetails(6);
+
+// $chapiter = new Chapiter($pdo);
+// $totalDuration = $chapiter->getTotalCourseDuration($id);
+// $minuteToHour = Utils::minuteToHour($totalDuration);
 ?>
 
 <div class="header">    

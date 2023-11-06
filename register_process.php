@@ -5,21 +5,21 @@ require_once 'functions/db.php';
 require_once 'classes/AppError.php';
 require_once 'classes/Email.php';
 require_once 'classes/EmailError.php';
-require_once 'classes/SpamChecker.php';
+require_once 'classes/PhoneValidator.php';
+// require_once 'classes/SpamChecker.php';
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST') {
     Utils::redirect('register.php');
 }
 
-// 1. vérigier l'email
-
+// 1. vérifier l'email
 
 try {
     $email = new Email($_POST['email']);
-    $spamChecker = new SpamChecker();
-    if($spamChecker->isSpam($email)) {
-        throw new InvalidArgumentException(code:EmailError::SPAM);
-    }
+    // $spamChecker = new SpamChecker();
+    // if($spamChecker->isSpam($email)) {
+    //     throw new InvalidArgumentException(code:EmailError::SPAM);
+    // }
 } catch(EmptyEmailException | InvalidArgumentException $e) {
     Utils::redirect('register.php?error=' . $e->getCode());
 } catch(InvalidArgumentException $e) {
@@ -57,6 +57,18 @@ try {
     $user_avatar = $avatar['name'];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+    // vérifier si le mot de passe est identique avec celui à confirmer
+    if ($password !== $confirmPassword) {
+        Utils::redirect('register.php?error=' . EmailError::MIS_MATCH);
+        exit;
+    }
+
+    // Vérifier phone number
+    if (!PhoneValidator::validatePhoneNumber($phoneNumber)) {
+        Utils::redirect('register.php?error=' . PhoneValidator::FORMAT_NUMBER);
+        exit;
+    }
+
     // préparer une requête pour insérer un novueau utilisateur dans la base de données
 
     $query  = "INSERT INTO users (`firstname`, `lastname`, `email`, `password`, `birthday`, `date_create`, `tel`, `avatar_url`) VALUES (:first_name, :last_name, :email, :hashedPassword, :birthday, NOW(), :phoneNumber, :avatar)";
@@ -80,6 +92,5 @@ $_SESSION['userInfos'] = [
 ];
 
 
-
-Utils::redirect('registerConfirm.php?username=' . urlencode($firstname));
+Utils::redirect('registerConfirm.php?username=' . $firstname);
 exit;

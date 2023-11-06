@@ -61,9 +61,10 @@ foreach ($tags as $id => $tag) { ?>
           <?php echo $tag['tag_name']; ?>
         </option>
         <?php } ?>
-      </select>
+      </select>  
+      <input type="submit" value="Rechercher" class="bg-blue-400 text-white px-4 py-2 rounded-lg cursor-pointer">
     </div>
-    <input type="submit">
+  
   </form>
 </div>
 
@@ -76,5 +77,4 @@ foreach ($tags as $id => $tag) { ?>
   filterIcon.addEventListener('click', () => {
     filterMenu.classList.toggle('hidden');
   });
-
 </script>     

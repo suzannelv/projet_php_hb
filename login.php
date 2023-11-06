@@ -22,10 +22,10 @@ require_once __DIR__ . "/layout/head.php";
                       <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
                   </div>
                   <!-- affichage d'erreur si le mot de passe est incorrect -->
-                  <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 mt-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">
-                    <?php if (isset($_GET['error'])) {
-                        echo $_GET['error'];
-                    } ?>
+                  <?php if (isset($_GET['error'])) { ?>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 mt-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">      
+                  <?php  echo $_GET['error'];
+                  } ?>
                   </span>
 
                   <div class="flex items-center justify-between">

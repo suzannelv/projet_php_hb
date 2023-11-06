@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/../classes/Utils.php';
 require_once __DIR__ .'/../classes/Chapiter.php';
-// $chapiter = new Chapiter($pdo);
-// $totalDuration = $chapiter->getTotalCourseDuration($id);
-// $minuteToHour = Utils::minuteToHour($totalDuration);
+
 
 foreach ($courseDetail as $item) { ?>
   
@@ -34,17 +32,19 @@ foreach ($courseDetail as $item) { ?>
              <span class="text-sm font-medium px-2.5 py-0.5  rounded <?php echo $tag['tag_bg_color'] . ' ' . $tag['tag_text_color']; ?>"> 
                 <?php echo $tag['tag_name']; ?>
              </span>
+             
             <?php } ?>
         </div>
 
        <!-- title de cours -->
    
-        <h5 class="text-2xl text-start font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $item['courseName'] ?></h5>
+        <h5 class="text-2xl text-start font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $item['courseName']; ?></h5>
+     
    
         <div class="absolute text-start left-0 bottom-O ml-5 mb-2">
             <!-- revoir le calcul total de cours dans les chapitres  -->
             <p class="text-md font-semibold text-gray-900 
-            dark:text-white">Duration : <?php echo "20h"; ?></p>
+            dark:text-white">Duration : <?php echo "20"; ?></p>
             <p class="text-md font-semibold text-gray-900 
             dark:text-white">Date Mise en ligne: <br>
              <?php echo $item['dateOnline'] ?>

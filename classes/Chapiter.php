@@ -9,7 +9,6 @@ class Chapiter
 
     }
 
-
     public function getChaptersDetail(int $courseId): array
     {
         $query = "SELECT * FROM chapiter WHERE course_id = :course_id";
@@ -24,7 +23,6 @@ class Chapiter
               'chapiterDuration' => $row['chapiter_duration_minutes'],
               'chapiterVideoId'=>$row['chapiter_video_id'],
               'chapiterContent'=>$row['chapiter_content'],
-
             ];
             $chapiterContent[] = $chapiterInfo;
         }

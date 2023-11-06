@@ -16,7 +16,7 @@ $email=$_GET['email'] ?? "";
               </h1>
               <!-- afficher les erreurs si l'email n'est pas valide -->
               <?php if (isset($_GET['error'])) { ?>
-                <div class="mb-3">
+                <div class="mb-3 text-center">
                     <span class="text-red-500 bg-red-100 py-1 px-2">
                         <?php echo EmailError::getErrorMessage(intval($_GET['error'])); ?>
                     </span>

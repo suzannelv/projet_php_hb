@@ -67,29 +67,37 @@ class Course
     {
         $sql = "SELECT c.* FROM courses c";
 
-        $parameters = [];
+        // $parameters = [];
+
+        if ($language || $level || $theme) {
+            $sql .= " INNER JOIN languages l ON c.lang_id = l.id_lang";
+        }
 
         if ($language) {
-            $sql .= " INNER JOIN languages l ON c.lang_id = l.id_lang WHERE l.lang_name = :language";
-            $parameters[':language'] = $language;
-        }
-        if ($level) {
-            $sql .= " INNER JOIN level lv ON c.level_id = lv.id_level WHERE lv.level_name = :level";
-            $parameters[':level'] = $level;
-        }
-        if ($theme) {
-            $sql .= " AND c.id_course IN 
-                (SELECT c.id_course
-                FROM courses c
-                INNER JOIN course_tag_asso cta ON c.id_course = cta.course_id
-                INNER JOIN course_tag ct ON cta.tag_id = ct.id_tag
-                WHERE ct.tag_name = :theme
-                )";
-            $parameters[':theme'] = $theme;
+            $sql .= " AND l.lang_name = :language";
+            // $parameters[':language'] = $language;
         }
 
+        if ($level) {
+            $sql .= " INNER JOIN level lv ON c.level_id = lv.id_level";
+            $sql .= " AND lv.level_name = :level";
+            // $parameters[':level'] = $level;
+        }
+
+        if ($theme) {
+            $sql .= " INNER JOIN course_tag_asso cta ON c.id_course = cta.course_id";
+            $sql .= " INNER JOIN course_tag ct ON cta.tag_id = ct.id_tag";
+            $sql .= " AND ct.tag_name = :theme";
+            // $parameters[':theme'] = $theme;
+        }
+
+
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($parameters);
+        $stmt->execute([
+            'language' => $language,
+            'level' => $level,
+            'theme' => $theme
+        ]);
 
         $courses = [];
 

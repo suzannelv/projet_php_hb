@@ -8,6 +8,6 @@ class SpamChecker
 
     public function isSpam(Email $email): bool
     {
-        return in_array($email->getDomain(), self::SPAM_DOMAINS);
+        return in_array($email->getDomain(), SpamChecker::SPAM_DOMAINS);
     }
 }

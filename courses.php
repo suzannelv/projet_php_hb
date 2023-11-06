@@ -2,17 +2,29 @@
 require_once __DIR__ . "/layout/head.php";
 require_once __DIR__ . "/classes/Course.php";
 require_once __DIR__ . '/functions/db.php';
+require_once __DIR__ . '/classes/Pagination.php';
 
 
 try {
     $pdo = getConnection();
     $course = new Course($pdo);
     $courseDetail = $course->getCourseDetails(38);
+    $pagination = new Pagination($pdo, 'your_table');
+    // $chapiter = new Chapiter($pdo);
+    // $totalDuration = $chapiter->getTotalCourseDuration($id);
+    // $minuteToHour = Utils::minuteToHour($totalDuration);
 } catch(PDOException $e) {
     echo $e->getMessage();
 }
 
+
+$page = $_GET['page'] ?? 1;
+$limit = $_GET['limit'] ?? 10;
+$data = $pagination->getPaginatedData($page, $limit);
+
 ?> 
+
+
 <main class="mx-auto text-center">
   <h2 class="text-3xl font-bold py-8 my-10">Aperçu du cours</h2>
 

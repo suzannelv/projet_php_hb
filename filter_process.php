@@ -3,20 +3,19 @@
 require_once __DIR__ . '/functions/db.php';
 require_once __DIR__ . '/classes/Course.php';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $pdo = getConnection();
+    $course = new Course($pdo);
 
-$language = isset($_POST['language']) ? $_POST['language'] : null;
-$level = isset($_POST['level']) ? $_POST['level'] : null;
-$theme = isset($_POST['theme']) ? $_POST['theme'] : null;
-var_dump($_POST);
+    $language = $_POST['language'] ;
+    $level = $_POST['level'];
+    $theme = $_POST['theme'];
 
-$pdo = getConnection();
-
-$courses = new Course($pdo);
-
-$filterCourses = $courses->getFilteredCourses($language, $level, $theme);
-var_dump($filterCourses);
-if($filterCourses === null) {
-    echo 'pas de cours trouvé';
-} else {
-    echo 'trouvé';
+    try {
+        $filteredCourses = $course->getFilteredCourses($language, $level, $theme);
+        echo json_encode($filteredCourses);
+        var_dump($filteredCourses);
+    } catch (Exception $e) {
+        echo json_encode(["error" => $e->getMessage()]);
+    }
 }

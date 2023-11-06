@@ -34,6 +34,10 @@ if($user === false) {
     Utils::redirect('login.php?error=' . AppError::USER_NOT_FOUND);
 }
 
+if($user['type_user'] === 1) {
+    Utils::redirect('./admin/index.php');
+}
+
 // sinon, vérifier mot de passe
 if(!password_verify($password, $user['password'])) {
     Utils::redirect('login.php?error=' . AppError::INVALID_CREDENTIALS);
