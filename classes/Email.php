@@ -30,7 +30,7 @@ class Email
         return filter_var($this->email, FILTER_VALIDATE_EMAIL) !== false;
     }
 
-    private function getDomain(): string
+    public function getDomain(): string
     {
         return ltrim(strstr($this->email, '@'), '@');
     }

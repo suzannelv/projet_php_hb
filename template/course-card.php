@@ -42,9 +42,9 @@ foreach ($courseDetail as $item) { ?>
      
    
         <div class="absolute text-start left-0 bottom-O ml-5 mb-2">
-            <!-- revoir le calcul total de cours dans les chapitres  -->
+            <!-- calculer total de cours dans les chapitres  -->
             <p class="text-md font-semibold text-gray-900 
-            dark:text-white">Duration : <?php echo "20"; ?></p>
+            dark:text-white">Duration : <?php echo Utils::minuteToHour($item['total_duration']); ?></p>
             <p class="text-md font-semibold text-gray-900 
             dark:text-white">Date Mise en ligne: <br>
              <?php echo $item['dateOnline'] ?>

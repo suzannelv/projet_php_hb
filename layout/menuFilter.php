@@ -13,7 +13,7 @@ $pdo = getConnection();
 
 <!-- menu filtrage -->
 <div class="hidden md:flex flex-wrap gap-5 items-center justify-start " id="filterMenu"> 
-  <form action="filter_process.php" method="POST" class="grid gap-8 sm:grid-cols-3 sm:grid-rows-1 mb-[100px]" id="filterForm">
+  <form action="courses.php" method="POST" class="grid gap-8 sm:grid-cols-3 sm:grid-rows-1 mb-[100px]" id="filterForm">
      <!-- Language filter -->
     <div class="mb-5">
       <label for="language" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Langues : </label>

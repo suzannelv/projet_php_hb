@@ -1,13 +1,10 @@
 <?php
 
-class Chapiter
+require_once 'AbstractPdo.php';
+
+class Chapiter extends AbstractPdo
 {
     private $courseId;
-
-    public function __construct(private PDO $pdo)
-    {
-
-    }
 
     public function getChaptersDetail(int $courseId): array
     {
