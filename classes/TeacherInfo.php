@@ -1,11 +1,10 @@
 <?php
 
 require_once __DIR__ . '/Course.php';
-class TeacherInfo
+require_once 'AbstractPdo.php';
+
+class TeacherInfo extends AbstractPdo
 {
-    public function __construct(private PDO $pdo)
-    {
-    }
     public function getTeacherFullname(int $teacher_id): string
     {
         $stmt = $this->pdo->prepare("SELECT CONCAT(firstname, ' ', lastname) AS full_name FROM teacher WHERE id_teacher = :teacher_id");

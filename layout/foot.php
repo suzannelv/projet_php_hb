@@ -6,5 +6,6 @@ require_once __DIR__ . '/footer.php';
   <script>AOS.init();</script>
   <script src="../assets/js/counter_up.js"></script>
   <script src="../assets/js/script.js"></script>
+  <script src="../assets/js/jQuery.js"></script>
 </body>
 </html>

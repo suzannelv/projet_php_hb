@@ -17,7 +17,7 @@ class Course
     public function __construct(private PDO $pdo)
     {
         $this->tag = new CourseTags($pdo);
-        $this->courseLevel= new CourseLevel($pdo);
+        $this->courseLevel = new CourseLevel($pdo);
         $this->courseLanguage = new CourseLanguage($pdo);
         $this->teacherInfo = new TeacherInfo($pdo);
     }
@@ -53,7 +53,7 @@ class Course
               'dateOnline' => $row['date_online'],
               'level' => $this->courseLevel->getCourseLevel($row['level_id']),
               'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
-              'teacherProfile'=>$this->teacherInfo->getProfilImg($row['teacher_id']),
+              'teacherProfile' => $this->teacherInfo->getProfilImg($row['teacher_id']),
               'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
               'tags' => $this->tag->getCourseTags($row['id_course']),
               'total_duration' => $this->getTotalDuration($row['id_course'])
@@ -129,5 +129,31 @@ class Course
 
         return 0;
     }
+
+    public function getWishlistCourses(int $userId): array
+    {
+        $query = "SELECT c.* FROM selection_course AS sc
+              INNER JOIN courses AS c ON sc.course_id = c.id_course
+              WHERE sc.user_id = :user_id";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(['user_id' => $userId]);
+
+        $wishlistCourses = [];
+
+        while ($row = $stmt->fetch()) {
+            $courseDetails = [
+                'courseId' => $row['id_course'],
+                'courseName' => $row['course_name'],
+                'coverImg' => $row['cover_img_url'],
+                'dateOnline' => $row['date_online'],
+            ];
+
+            $wishlistCourses[] = $courseDetails;
+        }
+
+        return $wishlistCourses;
+    }
+
 
 }

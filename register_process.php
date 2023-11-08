@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once 'classes/Utils.php';
 require_once 'functions/db.php';
 require_once 'classes/AppError.php';
@@ -70,22 +71,22 @@ try {
 
     // vérifier si le mot de passe est identique avec celui à confirmer
     if ($password !== $confirmPassword) {
-        // Utils::redirect('register.php?error=' . EmailError::MIS_MATCH);
         $_SESSION['error_message'] = [
-            'code' => $e->getCode(),
-            'message' => EmailError::MIS_MATCH,
+            'code' => EmailError::MIS_MATCH,
+            'message' => EmailError::getErrorMessage(EmailError::MIS_MATCH),
         ];
-        exit;
+        Utils::redirect('register.php');
+
     }
 
     // Vérifier phone number
     if (!AppError::validatePhoneNumber($phoneNumber)) {
-        // Utils::redirect('register.php?error=' . AppError::FORMAT_NUMBER);
         $_SESSION['error_message'] = [
             'code' => AppError::FORMAT_NUMBER,
             'message' => AppError::getAppErrMsg(AppError::FORMAT_NUMBER),
         ];
-        exit;
+        Utils::redirect('register.php');
+
     }
 
     // préparer une requête pour insérer un novueau utilisateur dans la base de données
@@ -102,12 +103,12 @@ try {
         'phoneNumber'    => $phoneNumber,
         'avatar'         => $filename
     ]);
-} catch (PDOException $e) {
-    // Utils::redirect('register.php?error=' . AppError::DB_CONNECTION);
+} catch (PDOException) {
     $_SESSION['error_message'] = [
         'code' => AppError::DB_CONNECTION,
         'message' => AppError::getAppErrMsg(AppError::DB_CONNECTION),
     ];
+    Utils::redirect('register.php');
 }
 
 $_SESSION['userInfos'] = [

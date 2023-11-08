@@ -6,6 +6,7 @@ require_once __DIR__ . '/classes/Pagination.php';
 
 $pdo = getConnection();
 $course = new Course($pdo);
+$courseDetail = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $language = $_POST['language'] ;
@@ -17,8 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         echo json_encode(["error" => $e->getMessage()]);
     }
+} else {
+    $courseDetail = $course->getCourseDetails(38);
 }
-$courseDetail = $course->getCourseDetails(38);
+
 
 ?> 
 
@@ -31,16 +34,17 @@ $courseDetail = $course->getCourseDetails(38);
     <?php require_once __DIR__ . "/layout/menuFilter.php"; ?>
   </div>
 
-  <!-- template cours -->
-  <div class="grid md:grid-cols-3 gap-4 place-items-center max-w-screen-lg mx-auto"> 
-    <?php require_once __DIR__ . "/template/course-card.php" ?>
-  </div>
-<!-- 
-      <a href="courses.php" class="inline-flex items-center px-3 py-2 my-10 text-sm font-medium text-center text-white bg-blue-400 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Voir plus
-      </a> -->
+  <!-- si on a trouvé les cours, afficher le template cours -->
+  <?php if (!empty($courseDetail)) { ?>
+    <div class="grid md:grid-cols-3 gap-4 place-items-center max-w-screen-lg mx-auto">
+      <?php require_once __DIR__ . "/template/course-card.php"; ?>
+    </div>
+  <?php } else { ?>
+    <!-- message pour les cours non trouvé -->
+    <div class="my-10 text-gray-700 text-3xl">Cours non trouvé <i class="fa-regular fa-face-frown text-yellow-400"></i></div>
+  <?php } ?>
 
-      <div class="mx-auto my-10 text-gray-700 text-lg">- Fin -</div>
+  <div class="mx-auto my-10 text-gray-700 text-lg">- Fin -</div>
 </main>
 
 <?php

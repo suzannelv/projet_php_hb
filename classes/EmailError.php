@@ -11,12 +11,12 @@ class EmailError
     public static function getErrorMessage(int $errorCode): string
     {
         return match ($errorCode) {
-            EmailError::EMPTY => "L'email est obligatoire",
-            EmailError::INVALID => "Le format de l'email est incorrect",
+            EmailError::EMPTY     => "L'email est obligatoire",
+            EmailError::INVALID   => "Le format de l'email est incorrect",
             EmailError::DUPLICATE => "L'email existe déjà dans la newsletter",
-            EmailError::SPAM => "Désolé, cet email n'est pas accepté dans notre newsletter",
+            EmailError::SPAM      => "Désolé, cet email n'est pas accepté dans notre newsletter",
             EmailError::MIS_MATCH => "Les mots de passe ne sont pas identiques",
-            default => "Une erreur est survenue"
+            default               => "Une erreur est survenue"
         };
     }
 

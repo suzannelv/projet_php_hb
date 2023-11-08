@@ -1,11 +1,9 @@
 <?php
 
-class CourseLanguage
-{
-    public function __construct(private PDO $pdo)
-    {
-    }
+require_once 'AbstractPdo.php';
 
+class CourseLanguage extends AbstractPdo
+{
     public function getAllLanguages(): array
     {
         $stmt = $this->pdo->query("SELECT * FROM languages");

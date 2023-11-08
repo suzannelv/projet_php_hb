@@ -1,11 +1,9 @@
 <?php
 
-class CourseLevel
-{
-    public function __construct(private PDO $pdo)
-    {
-    }
+require_once 'AbstractPdo.php';
 
+class CourseLevel extends AbstractPdo
+{
     public function getAllLevels(): array
     {
         $stmt = $this->pdo->query("SELECT id_level, level_name FROM level");

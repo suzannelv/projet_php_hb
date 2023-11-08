@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/layout/head.php";
 require_once __DIR__ . "/classes/EmailError.php";
+require_once __DIR__ . "/classes/AppError.php";
 $email=$_GET['email'] ?? "";
 ?>
 
@@ -17,11 +18,13 @@ $email=$_GET['email'] ?? "";
               <!-- afficher les erreurs si l'email n'est pas valide -->
               <?php
 
-              if (isset($_SESSION['error_message'])) {
-                  $error = $_SESSION['error_message']; ?>
-                <div class="mb-3 text-center">;
-                   <span class="text-red-500 bg-red-100 py-1 px-2">;
-                    <?php match ($error['code']) {
+
+
+if (isset($_SESSION['error_message'])) {
+    $error = $_SESSION['error_message']; ?>
+                <div class="mb-3 text-center">
+                   <span class="text-red-500 bg-red-100 py-1 px-2">
+                    <?php $message=match ($error['code']) {
                         EmailError::EMPTY => EmailError::getErrorMessage(EmailError::EMPTY),
                         EmailError::INVALID => EmailError::getErrorMessage(EmailError::INVALID),
                         EmailError::DUPLICATE => EmailError::getErrorMessage(EmailError::DUPLICATE),
@@ -30,11 +33,14 @@ $email=$_GET['email'] ?? "";
                         AppError::FORMAT_NUMBER => AppError::getAppErrMsg(AppError::FORMAT_NUMBER),
                         AppError::DB_CONNECTION => AppError::getAppErrMsg(AppError::DB_CONNECTION),
                         default => 'Une erreur est survenue',
-                    }; ?>
-                    </span>;
-                 </div>;
+                    };
+    echo $message;
+    ?>
+                    
+                    </span>
+                 </div>
                   <?php unset($_SESSION['error_message']);
-              } ?>
+} ?>
               <!-- form -->
               <form class="space-y-4 md:space-y-6" action="register_process.php" method="POST" enctype="multipart/form-data">
                   <div>
@@ -82,5 +88,5 @@ $email=$_GET['email'] ?? "";
 </main>
 
 <?php
-              require_once __DIR__ ."/layout/foot.php";
+require_once __DIR__ ."/layout/foot.php";
 require_once __DIR__ ."/layout/footer.php";

@@ -75,7 +75,7 @@
                     <img class="w-12 h-12" src="<?php echo $item['coverImg'] ?>" alt="cours cover image">
                     <div class="pl-3">
                         <div class="text-base font-semibold"><?php echo $item['courseName'] ?></div>
-                        <div class="font-normal text-gray-500">Duration: <?php echo 20; ?> </div>
+                        <div class="font-normal text-gray-500">Duration: <?php echo Utils::minuteToHour($item['total_duration']); ?> </div>
                     </div>  
                 </th>
                 <td class="px-6 py-4">
@@ -94,8 +94,8 @@
                     <?php echo $item['dateOnline']; ?>
                 </td>
                 <td class="px-6 py-4">
-                    <a href="#" class="font-medium mr-6 text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline"><i class="fa-solid fa-trash-can"></i></a>
+                    <a href="operation_process.php" class="font-medium mr-6 text-blue-600 dark:text-blue-500 hover:underline"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="operation_process.php" class="font-medium text-red-600 dark:text-red-500 hover:underline"><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
            <?php } ?>

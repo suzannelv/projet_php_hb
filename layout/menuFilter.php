@@ -13,7 +13,7 @@ $pdo = getConnection();
 
 <!-- menu filtrage -->
 <div class="hidden md:flex flex-wrap gap-5 items-center justify-start " id="filterMenu"> 
-  <form action="courses.php" method="POST" class="grid gap-8 sm:grid-cols-3 sm:grid-rows-1 mb-[100px]" id="filterForm">
+  <form action="courses.php" method="POST" class="grid gap-8 sm:grid-cols-4 sm:grid-rows-1 mb-[100px]" id="filterForm">
      <!-- Language filter -->
     <div class="mb-5">
       <label for="language" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">Langues : </label>
@@ -23,7 +23,7 @@ $pdo = getConnection();
         $languagesDb = new CourseLanguage($pdo);
 $languages = $languagesDb->getAllLanguages();
 foreach ($languages as $id => $lang) { ?>
-        <option value="<?php echo $lang['lang_name']; ?>">
+        <option value="<?php echo $lang['lang_name']; ?>" <?php echo((isset($_POST['language']) && $_POST['language'] === $lang['lang_name']) ? "selected" : ""); ?>>
           <?php echo $lang['lang_name']; ?>
         </option>
         <?php } ?>
@@ -39,7 +39,7 @@ foreach ($languages as $id => $lang) { ?>
           $levelDb = new CourseLevel($pdo);
 $levels = $levelDb->getAllLevels();
 foreach ($levels as $id => $level) { ?>
-          <option value="<?php echo $level['level_name']; ?>">
+          <option value="<?php echo $level['level_name']; ?>" <?php echo (isset($_POST['level']) && $_POST['level'] === $level['level_name']) ? "selected" : ""; ?>>
             <?php echo $level['level_name']; ?>
           </option>
           <?php } ?>
@@ -57,14 +57,17 @@ foreach ($levels as $id => $level) { ?>
         $tagDb = new CourseTags($pdo);
 $tags = $tagDb->getAllTags();
 foreach ($tags as $id => $tag) { ?>
-        <option value="<?php echo $tag['tag_name']; ?>">
+        <option value="<?php echo $tag['tag_name']; ?>" <?php echo (isset($_POST['theme']) && $_POST['theme'] === $tag['tag_name']) ? "selected" : ""; ?>>
           <?php echo $tag['tag_name']; ?>
-        </option>
+        </option> 
+     
         <?php } ?>
+
       </select>  
-      <input type="submit" value="Rechercher" class="bg-blue-400 text-white px-4 py-2 rounded-lg cursor-pointer">
+
+     
     </div>
-  
+    <button type="submit" class="bg-blue-400 text-white w-[100px] h-[40px] px-2 py-1 rounded-lg cursor-pointer mt-7">Rechercher</button>
   </form>
 </div>
 
