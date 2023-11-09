@@ -11,7 +11,7 @@ class Email
     /**
      *
      * @param string $email
-     * @throws InvalidArgumentException if email is empty or invalid
+     * @throws InvalidArgumentException si l'email est vide ou invalide
      */
     public function __construct(string $email)
     {

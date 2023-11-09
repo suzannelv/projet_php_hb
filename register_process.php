@@ -91,7 +91,8 @@ try {
 
     // préparer une requête pour insérer un novueau utilisateur dans la base de données
 
-    $query  = "INSERT INTO users (`firstname`, `lastname`, `email`, `password`, `birthday`, `date_create`, `tel`, `avatar_url`) VALUES (:first_name, :last_name, :email, :hashedPassword, :birthday, NOW(), :phoneNumber, :avatar)";
+    $query  = "INSERT INTO users (`firstname`, `lastname`, `email`, `password`, `birthday`,  `date_create`, `tel`, `avatar_url`) 
+               VALUES (:first_name, :last_name, :email, :hashedPassword, :birthday, NOW(), :phoneNumber, :avatar)";
 
     $stmtInsert = $pdo->prepare($query);
     $stmtInsert->execute([
@@ -105,7 +106,7 @@ try {
     ]);
 } catch (PDOException) {
     $_SESSION['error_message'] = [
-        'code' => AppError::DB_CONNECTION,
+        'code'    => AppError::DB_CONNECTION,
         'message' => AppError::getAppErrMsg(AppError::DB_CONNECTION),
     ];
     Utils::redirect('register.php');

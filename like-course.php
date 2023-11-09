@@ -16,21 +16,25 @@ $course = new Course($pdo);
 
 $userId = $_SESSION["userInfos"]['id'];
 $courseId = intval($_GET['id']);
-// $selection = new CourseSelected($pdo);
-// $selection->checkIfCourseSelected($courseId, $courseId);
 
 
 // Vérifier si un utilisateur a choisi le même cours
-$query = "SELECT * FROM selection_course WHERE user_id = :user_id AND course_id = :course_id";
+$query = "SELECT * FROM selection_course 
+          WHERE user_id = :user_id 
+          AND course_id = :course_id";
+
 $stmtCheck = $pdo->prepare($query);
 $stmtCheck->execute([
-    'user_id' => $userId,
+    'user_id'   => $userId,
     'course_id' => $courseId
 ]);
 
 
 $refer = $_SERVER['HTTP_REFERER'];
 
+
+// Pour informer l'utilisaur a réussi à ajouter le cours dans la liste de voeux ou pas.
+// mais cette partie j'ai pas réussi à afficher à cause de problème d'affichage.
 if($stmtCheck->rowCount() > 0) {
     $_SESSION["message"] = "Vous avez déjà ajouter dans votre liste de voeux.";
     Utils::redirect($refer);
@@ -39,10 +43,10 @@ if($stmtCheck->rowCount() > 0) {
     $course->getCourseDetails(1, $courseId);
 
     $query = "INSERT INTO selection_course (`user_id`, `course_id`)
-          VALUES (:user_id, :course_id)";
+              VALUES (:user_id, :course_id)";
     $stmtInsert = $pdo->prepare($query);
     $stmtInsert->execute([
-      'user_id' => $userId,
+      'user_id'   => $userId,
       'course_id' => $courseId
     ]);
     $_SESSION['message'] = "Ajouté avec succès!";

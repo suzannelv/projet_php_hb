@@ -13,7 +13,7 @@ if (!isset($_POST['email']) || !isset($_POST['password'])) {
 
 // Extraction des données
 [
-    'email' => $email,
+    'email'    => $email,
     'password' => $password
 ] = $_POST;
 
@@ -44,10 +44,10 @@ if(!password_verify($password, $user['password'])) {
 }
 
 $_SESSION['userInfos'] = [
-  'id' => $user['id_user'],
-  'email' => $email,
-  'full_name'=>$user['firstname'] . ' ' . $user['lastname'],
-  'avatar' =>$user['avatar_url']
+  'id'       => $user['id_user'],
+  'email'    => $email,
+  'full_name' => $user['firstname'] . ' ' . $user['lastname'],
+  'avatar'   => $user['avatar_url']
 ];
 
 Utils::redirect('account.php');

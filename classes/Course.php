@@ -22,6 +22,28 @@ class Course
         $this->teacherInfo = new TeacherInfo($pdo);
     }
 
+    public function getCourseDetailsFromRow(array $row): array
+    {
+        return [
+            'courseId' => $row['id_course'],
+            'courseName' => $row['course_name'],
+            'description' => $row['description'],
+            'coverImg' => $row['cover_img_url'],
+            'videoUrl' => $row['video_url'],
+            'dateOnline' => $row['date_online'],
+            'level' => $this->courseLevel->getCourseLevel($row['level_id']),
+            'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
+            'teacherProfile' => $this->teacherInfo->getProfilImg($row['teacher_id']),
+            'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
+            'tags' => $this->tag->getCourseTags($row['id_course']),
+            'total_duration' => $this->getTotalDuration($row['id_course'])
+        ];
+    }
+    /**
+     *
+     * @param integer $limit pour définir le nombre de cours d'afficher
+     * @return array
+     */
     public function getCourseDetails(int $limit, $courseId = null): array
     {
         $sql = "SELECT * FROM courses";
@@ -44,26 +66,22 @@ class Course
 
         while ($row = $stmt->fetch()) {
 
-            $courseDetails = [
-              'courseId' => $row['id_course'],
-              'courseName' => $row['course_name'],
-              'description' => $row['description'],
-              'coverImg' => $row['cover_img_url'],
-              'videoUrl' => $row['video_url'],
-              'dateOnline' => $row['date_online'],
-              'level' => $this->courseLevel->getCourseLevel($row['level_id']),
-              'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
-              'teacherProfile' => $this->teacherInfo->getProfilImg($row['teacher_id']),
-              'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
-              'tags' => $this->tag->getCourseTags($row['id_course']),
-              'total_duration' => $this->getTotalDuration($row['id_course'])
-            ];
+            $courseDetails = $this->getCourseDetailsFromRow($row);
 
             $courses[] = $courseDetails;
         }
         return $courses;
     }
-    public function getFilteredCourses($language, $level, $theme): array
+
+    /**
+     * function pour le menu de filtrage, les utilisateur peuvent sélection les criètes pour afficher les cours qu'il souhaitent
+     *
+     * @param string $language
+     * @param string $level
+     * @param string $theme
+     * @return array
+     */
+    public function getFilteredCourses(string $language, string $level, string $theme): array
     {
         $sql = "SELECT c.* FROM courses c";
 
@@ -95,20 +113,7 @@ class Course
         $courses = [];
 
         while ($row = $stmt->fetch()) {
-            $courseDetails = [
-                'courseId' => $row['id_course'],
-                'courseName' => $row['course_name'],
-                'description' => $row['description'],
-                'coverImg' => $row['cover_img_url'],
-                'videoUrl' => $row['video_url'],
-                'dateOnline' => $row['date_online'],
-                'level' => $this->courseLevel->getCourseLevel($row['level_id']),
-                'teacher' => $this->teacherInfo->getTeacherFullname($row['teacher_id']),
-                'teacherProfile' => $this->teacherInfo->getProfilImg($row['teacher_id']),
-                'language' => $this->courseLanguage->getLanguageName($row['lang_id']),
-                'tags' => $this->tag->getCourseTags($row['id_course']),
-                'total_duration' => $this->getTotalDuration($row['id_course'])
-            ];
+            $courseDetails = $this->getCourseDetailsFromRow($row);
 
             $courses[] = $courseDetails;
         }
@@ -116,6 +121,12 @@ class Course
         return $courses;
     }
 
+    /**
+     * Fonction pour accumuler la duration de chauque chapitre de chaque cours et transmettre les minutes des cours en heure
+     *
+     * @param integer $courseId
+     * @return integer
+     */
     public function getTotalDuration(int $courseId): int
     {
         $query = "SELECT SUM(chapiter_duration_minutes) AS total_duration FROM chapiter WHERE course_id = :course_id";
@@ -129,7 +140,12 @@ class Course
 
         return 0;
     }
-
+    /**
+     * function pour insérer les cours sélectionnés dans la liste de voeux, mais la conditon préalable est que l'utilisateur doit se connecter.
+     *
+     * @param integer $userId
+     * @return array
+     */
     public function getWishlistCourses(int $userId): array
     {
         $query = "SELECT c.* FROM selection_course AS sc
@@ -143,9 +159,9 @@ class Course
 
         while ($row = $stmt->fetch()) {
             $courseDetails = [
-                'courseId' => $row['id_course'],
+                'courseId'   => $row['id_course'],
                 'courseName' => $row['course_name'],
-                'coverImg' => $row['cover_img_url'],
+                'coverImg'   => $row['cover_img_url'],
                 'dateOnline' => $row['date_online'],
             ];
 

@@ -7,7 +7,7 @@ class CourseTags extends AbstractPdo
     public function getAllTags(): array
     {
         $stmt = $this->pdo->query("SELECT id_tag, tag_name FROM course_tag");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 
     public function getCourseTags(int $course_id): array
@@ -23,8 +23,8 @@ class CourseTags extends AbstractPdo
 
         while ($row = $stmt->fetch()) {
             $tagInfo = [
-                'tag_name' => $row['tag_name'],
-                'tag_bg_color' => $row['tag_bg_color'],
+                'tag_name'       => $row['tag_name'],
+                'tag_bg_color'   => $row['tag_bg_color'],
                 'tag_text_color' => $row['tag_text_color']
             ];
             $tags[] = $tagInfo;

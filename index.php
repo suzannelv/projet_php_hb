@@ -6,8 +6,5 @@ require_once __DIR__ . "/layout/home/homeCounter.php";
 require_once __DIR__ . "/layout/home/homeActu.php";
 ?>
 
-
-
-
 <?php
 require_once __DIR__ . "/layout/foot.php";

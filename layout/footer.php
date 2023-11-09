@@ -4,7 +4,7 @@
     <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
+              <a href="index.php" class="flex items-center">
                   <img src="../assets/img/logo.svg" class="h-[60px] mr-3" alt="FlowBite Logo" />
                   
               </a>

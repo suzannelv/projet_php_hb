@@ -17,7 +17,7 @@ class CourseSelected extends AbstractPdo
         $query = "SELECT * FROM selection_course WHERE user_id = :user_id AND course_id = :course_id";
         $stmtCheck = $this->pdo->prepare($query);
         $stmtCheck->execute([
-            'user_id' => $userId,
+            'user_id'   => $userId,
             'course_id' => $courseId
         ]);
 
@@ -37,7 +37,7 @@ class CourseSelected extends AbstractPdo
           VALUES (:user_id, :course_id)";
             $stmtInsert = $this->pdo->prepare($query);
             $stmtInsert->execute([
-              'user_id' => $userId,
+              'user_id'   => $userId,
               'course_id' => $courseId
             ]);
             $_SESSION['message'] = "Ajouté avec succès!";

@@ -20,6 +20,4 @@ class TeacherInfo extends AbstractPdo
         $profil = $stmt->fetch();
         return $profil ? $profil['profile'] : '';
     }
-
-
 }

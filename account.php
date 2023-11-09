@@ -59,19 +59,18 @@ $userWishlistCourses = $wishlistCourses->getWishlistCourses($_SESSION['userInfos
             <?php
 
             foreach ($userWishlistCourses as $course) { ?>
-                <a href="#" class="w-full flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover rounded-t-lg h-60 w-[500px] md:rounded-none md:rounded-l-lg" src="<?php echo $course['coverImg']; ?>" alt="<?php echo $course['courseName']; ?>">
+                <div  class="relative w-full flex flex-col my-5 items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <img class="object-cover rounded-t-lg h-auto w-[500px] md:rounded-none md:rounded-l-lg" src="<?php echo $course['coverImg']; ?>" alt="<?php echo $course['courseName']; ?>">
                     <div class="flex flex-col justify-between p-10 leading-normal">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $course['courseName']; ?></h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><?php echo $course['dateOnline']; ?></p>
                     </div>
-                </a>
+                    <a href="courseDetail.php?id=<?php echo $course['courseId']; ?>" class="absolute end-5 bottom-5 hover:underline hover:text-blue-500">Voir le cours</a>
+                </div>
             <?php } ?>
         </div>
-
     </div>
 </main>
 
 <?php
 require_once __DIR__ ."/layout/foot.php";
-require_once __DIR__ ."/layout/footer.php";

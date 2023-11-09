@@ -17,12 +17,13 @@ class AppError
             AppError::INVALID_CREDENTIALS  => "Mot de passe incorrect",
             AppError::USER_NOT_FOUND       => "Utilisateur non trouvé",
             AppError::REGISTER_FILE_UPLOAD => "Téléchanger un fichier échoué",
-            AppError::FORMAT_NUMBER        =>"Le format de numéro n'est pas valide.",
+            AppError::FORMAT_NUMBER        => "Le format de numéro n'est pas valide.",
             default                        => "Une erreur est survenue",
 
         };
     }
 
+    // vérifier le format du numéro de téléphone
     public static function validatePhoneNumber($phoneNumber)
     {
         $phonePattern = '/#^0[6-7]{1}\d{8}$#/';
