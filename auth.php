@@ -44,10 +44,13 @@ if(!password_verify($password, $user['password'])) {
 }
 
 $_SESSION['userInfos'] = [
-  'id'       => $user['id_user'],
-  'email'    => $email,
-  'full_name' => $user['firstname'] . ' ' . $user['lastname'],
-  'avatar'   => $user['avatar_url']
+  'id'          => $user['id_user'],
+  'email'       => $email,
+  'first_name'  => $user['firstname'],
+  'last_name'   => $user['lastname'],
+  'avatar'      => $user['avatar_url'],
+  'birthday'    => $user['birthday'],
+  'phoneNumber' => $user['tel'],
 ];
 
 Utils::redirect('account.php');

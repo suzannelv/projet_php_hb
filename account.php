@@ -7,10 +7,11 @@ require_once __DIR__ . "/functions/db.php";
 $pdo = getConnection();
 $wishlistCourses = new Course($pdo);
 $userWishlistCourses = $wishlistCourses->getWishlistCourses($_SESSION['userInfos']['id']);
+
 ?>
 
 <main class="max-w-6xl mx-auto">
-    <h1 class="text-4xl font-bold text-gray-700 my-10">Bienvenue <?php echo $_SESSION['userInfos']['full_name'] ?> ! </h1>
+    <h1 class="text-4xl font-bold text-gray-700 my-10">Bienvenue <?php echo $_SESSION['userInfos']['first_name'] . ' '. $_SESSION['userInfos']['last_name'] ?> ! </h1>
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
             <li class="mr-2" role="presentation">
@@ -30,15 +31,30 @@ $userWishlistCourses = $wishlistCourses->getWishlistCourses($_SESSION['userInfos
             <div class="w-full mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col items-center pb-10 justify-center">
                     <img class="w-24 h-24 mb-3 mt-6 rounded-full shadow-lg" 
-                    src="<?php echo $_SESSION['userInfos']['avatar'] ? "uploads/" . $_SESSION['userInfos']['avatar'] : "assets/img/avatar.jpg"; ?>" 
-                    alt="<?php echo $_SESSION['userInfos']['full_name'] ?>"/>
+                         src="<?php echo $_SESSION['userInfos']['avatar'] ? "uploads/" . $_SESSION['userInfos']['avatar'] : "assets/img/avatar.jpg"; ?>" 
+                         alt="<?php echo $_SESSION['userInfos']['first_name'] . ' '. $_SESSION['userInfos']['last_name'] ?>"/>
                 
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                    <?php echo $_SESSION['userInfos']['full_name'] ?>
+                        <?php echo $_SESSION['userInfos']['first_name'] . ' '. $_SESSION['userInfos']['last_name']; ?>
                     </h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">
-                    <?php echo $_SESSION['userInfos']['email']; ?>
-                    </span>
+
+                    <div class="flex flex-col justify-center items-center">
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            <?php echo $_SESSION['userInfos']['email']; ?>
+                        </span>
+
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            Date de naissane: <?php echo $_SESSION['userInfos']['birthday']; ?>
+                        </span> 
+
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            Numéro de téléphne: <?php echo $_SESSION['userInfos']['phoneNumber']; ?>
+                        </span>
+                        <a href="updateInfo.php" type="button" class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <i class="fa-solid fa-cat"></i>
+                            Modifier
+                        </a>
+                    </div>
                 </div>
             </div>
 

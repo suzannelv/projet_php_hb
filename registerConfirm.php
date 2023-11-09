@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/layout/head.php';*
+require_once __DIR__ . '/layout/head.php';
 
 if(isset($_GET['username'])) { ?>
  <main class="prose mx-auto mt-20">
@@ -13,4 +13,3 @@ if(isset($_GET['username'])) { ?>
 
 <?php
 require_once 'layout/foot.php';
-
