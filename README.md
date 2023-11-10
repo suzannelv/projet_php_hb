@@ -53,7 +53,7 @@ Dans ce projet, le travail le plus important a consisté à récupérer les donn
 
 ```bash
 <?php
-|📗admin.php -> cette partie je n\'ai pas réussi à tout terminer, j'ai seulement accompli  l'affichage des informations sur les cours.😢
+|📗admin.php ➡️ cette partie je n'ai pas réussi à tout terminer, j'ai seulement accompli l'affichage des informations sur les cours.😢
   |📃index.php
   |📃operation_process.php
   |📃template-list.php
@@ -64,60 +64,60 @@ Dans ce projet, le travail le plus important a consisté à récupérer les donn
     |📁icon/(svg)
     |images(jpg/ico/svg)...
   |📓js/
-    |📃counter_up.js -> Les chiffres augmentent au fur et à mesure que l'on fait défiler jusqu'à cette partie, présente sur la page d\'accueil
+    |📃counter_up.js ➡️ Les chiffres augmentent au fur et à mesure que l'on fait défiler jusqu'à cette partie, présente sur la page d\'accueil
 |📕classes/
   |📙Exception
-    |📃EmptyEmailException.php -> erreur lancé si email vide
-    |📃InvalidEmailException.php -> erreur lancé si email invalide
-  |📃AbstractPdo.php -> classe abstract PDO
-  |📃AppError.php  -> code et message sur App
-  |📃EmailError.php  -> méthode pour récupérer les erreurs
-  |📃Email.php -> code de message sur Email
-  |📃Chapiter.php -> classe sur chapitre
-  |📃Course.php -> classe sur les cours
-  |📃CourseLanguage.php -> classe sur les langues
-  |📃CourseLevel.php -> classe sur les niveau de langue
-  |📃CourseSelected.php -> classe sur la sélection des cours pour ajouter dans la liste de voeux, mais pas réussi à intégrer dans ce projet 😢
-  |📃CourseTag.php -> classe sur les étiquettes des cours
-  |📃MenuItem.php -> classe pour les style css des éléments sur navigation
-  |📃Pagination.php -> pas réussi à faire non plus 😢
-  |📃SpamChecker.php -> classe vérifier si email est un spam ou pas
-  |📃TeacherInfo.php -> classe sur les enseignants
-  |📃Utils.php -> Classe comprenant des méthodes statiques telles que `headers()` pour rediriger et convertir les minutes en heures.
+    |📃EmptyEmailException.php ➡️ erreur lancé si email vide
+    |📃InvalidEmailException.php ➡️ erreur lancé si email invalide
+  |📃AbstractPdo.php ➡️ classe abstract PDO
+  |📃AppError.php  ➡️ code et message sur App
+  |📃EmailError.php  ➡️ méthode pour récupérer les erreurs
+  |📃Email.php ➡️ code de message sur Email
+  |📃Chapiter.php ➡️ classe sur chapitre
+  |📃Course.php ➡️ classe sur les cours
+  |📃CourseLanguage.php ➡️ classe sur les langues
+  |📃CourseLevel.php ➡️ classe sur les niveau de langue
+  |📃CourseSelected.php ➡️ classe sur la sélection des cours pour ajouter dans la liste de voeux, mais pas réussi à intégrer dans ce projet 😢
+  |📃CourseTag.php ➡️ classe sur les étiquettes des cours
+  |📃MenuItem.php ➡️ classe pour les style css des éléments sur navigation
+  |📃Pagination.php ➡️ pas réussi à faire non plus 😢
+  |📃SpamChecker.php ➡️ classe vérifier si email est un spam ou pas
+  |📃TeacherInfo.php ➡️ classe sur les enseignants
+  |📃Utils.php ➡️ Classe comprenant des méthodes statiques telles que ``headers()`` pour rediriger et convertir les minutes en heures.
 |📘config
   |📇db.ini
-  |📃.gitignore -> (inclure db.ini)
+  |📃.gitignore ➡️ (inclure db.ini)
   |📃db.ini-template
 |📕function/
-  |📃db.php -> connection à la base de données
+  |📃db.php ➡️ connection à la base de données
 |📕layout/
-  |📓home/ -> Il s'agit des fichiers présents sur la page d'accueil
-  |📃head.php -> les métas
-  |📃nav.php -> navigation
-  |📃menuFilter.php -> menu de filtrage pour filter les cours
-  |📃chapiterContent.php -> composant sur le chapitre qui affiche sur la page détaillé des cours
+  |📓home/ ➡️ Il s'agit des fichiers présents sur la page d'accueil
+  |📃head.php ➡️ les métas
+  |📃nav.php ➡️ navigation
+  |📃menuFilter.php ➡️ menu de filtrage pour filter les cours
+  |📃chapiterContent.php ➡️ composant sur le chapitre qui affiche sur la page détaillé des cours
   |📃footer.php
   |📃footer.php
 |📕template/
-  |📃course-card.php -> la carte pour chaque cours
-|📕uploads/ -> Des photos téléchargées et sauvegardées localement
-|📃index.php -> home page
-|📃about.php -> page statique sur la présentation de cette plateforme
-|📃news.php -> page statique sur les actualités
-|📃contact.php -> page statique sur le contact
-|📃course.php -> page pour afficher tous les cours (38)
-|📃courseDetail.php -> page détaillée sur chaque cours
-|📃like-btn.php -> fichier pour traiter la fonction d\'ajouter les cours sélectionnés dans la liste de voeux
-|📃login.php -> page pour se connecter
-|📃auth.php -> verifier l'identifiant et le mot de passe de l'utilisateur
-|📃logout.php -> fichier pour détruire les données si l\'utilisateur se déconnecte
-|📃register.php -> page pour s\'inscrire
-|📃register_process.php -> fichier pour traiter l\'inscription
-|📃register_confirme.php -> Une fois que l'utilisateur a réussi à s'inscrire, cette page affichera un message pour l\'informer de sa réussite
-|📃account.php -> page sur le compte de l\'utilisateur
-|📃updateInfo.php -> page qui permets à l\'utilisateur de mettre à jour ses info
-|📃update_process.php -> fichier responsable de la demande de l\'utilisateur pour mettre à jour ses informations.
-|📃.devcontainer.json -> fichier config
+  |📃course-card.php ➡️ la carte pour chaque cours
+|📕uploads/ ➡️ Des photos téléchargées et sauvegardées localement
+|📃index.php ➡️ home page
+|📃about.php ➡️ page statique sur la présentation de cette plateforme
+|📃news.php ➡️ page statique sur les actualités
+|📃contact.php ➡️ page statique sur le contact
+|📃course.php ➡️ page pour afficher tous les cours (38)
+|📃courseDetail.php ➡️ page détaillée sur chaque cours
+|📃like-btn.php ➡️ fichier pour traiter la fonction d'ajouter les cours sélectionnés dans la liste de voeux
+|📃login.php ➡️ page pour se connecter
+|📃auth.php ➡️ verifier l'identifiant et le mot de passe de l'utilisateur
+|📃logout.php ➡️ fichier pour détruire les données si l'utilisateur se déconnecte
+|📃register.php ➡️ page pour s'inscrire
+|📃register_process.php ➡️ fichier pour traiter l'inscription
+|📃register_confirme.php ➡️ Une fois que l'utilisateur a réussi à s'inscrire, cette page affichera un message pour l'informer de sa réussite
+|📃account.php ➡️ page sur le compte de l'utilisateur
+|📃updateInfo.php ➡️ page qui permets à l'utilisateur de mettre à jour ses info
+|📃update_process.php ➡️ fichier responsable de la demande de l'utilisateur pour mettre à jour ses informations.
+|📃.devcontainer.json ➡️ fichier config
 
 ```
 
