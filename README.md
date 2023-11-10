@@ -1,6 +1,6 @@
 # Nom du projet : LOLanguages
 
-## Introduction
+## 1. Introduction
 
 LOLanguages (Lot Of Languages) est une application d'apprentissage imaginée, inspirée par l'idée de Monsieur Delobelle, qui s'adresse au public passionné par l'apprentissage des langues étrangères. Il s'agit d'une plateforme à but non lucratif.
 
@@ -10,27 +10,27 @@ Afin de mettre en pratique les connaissances acquises, j'ai intégré ces concep
 
 Dans l'ensemble de mon code, j'ai veillé à respecter certaines règles visant à produire un [**code propre**](https://www.fidesio.com/clean-code-definition-avantages-et-principes#:~:text=Le%20terme%20Clean%20Code%20fait,d%C3%A9finition%20subjective%20du%20Clean%20Code.) en utilisant un **nommage claire**. Cette approche consiste principalement à rendre le code facile à comprendre et à maintenir.
 
-### Objectifs
+### 1.1 Objectifs
 
 L'objectif principal de ce projet est de mettre en pratique les connaissances acquises en PHP au cours de cette section, en utilisant des concepts natifs de PHP. Cela contribuera à approfondir la compréhension du fonctionnement de PHP et de la nature des structures de données standard (telles que SPL), par exemple.
 
-### Techiniques utilisées
+### 1.2 Techiniques utilisées
 
 -   **PHP** : Langage principal utilisé dans ce projet, de manière évidente ;
 -   **Javascript** : Utilisé de manière limitée, sans être l'objectif principal de ce projet ;
 -   **Flowbite** : Bibliothèque CSS basée sur Tailwind.
 
-### Ressources utilisées
+### 1.3 Ressources utilisées
 
 Pour le développement de ce projet, j'ai opté pour l'utilisation de ressources disponibles en ligne. Les vidéos proviennent de **YouTube**, la plupart des images sont issues de **Freepik**, et les icônes sont obtenues à partir de **Flowbite** et **Font Awesome**.
 
-### Problématiques
+### 1.4 Problématiques
 
 -   Comment structurer ce projet de manière efficace ?
 -   Comment établir la connexion avec la base de données pour afficher les données sur le navigateur ?
 -   Enfin, comment gérer les rôles d'administrateur et des utilisateurs de manière adéquate ?
 
-### Structure de base de données
+### 1.5 Structure de base de données
 
 La structure de la base de données est présentée ci-dessous:
 ![strucure BDD](/assets/structure-bdd.png)
@@ -45,11 +45,11 @@ En résumé, dans le tableau `courses`, il y a trois clés étrangères:
 
 Dans le tableau `users`, il inclut les informations de base sur l'utilisateur inscrit. Entre les tableaux `users` et `courses`, il y a un **tableau de transition** qui permet à l'utilisateur de sélectionner les cours dans leur liste de vœux pour les consulter ultérieurement.
 
-## Réalisation du projet
+## 2. Réalisation du projet
 
 Dans ce projet, le travail le plus important a consisté à récupérer les données pour les afficher sur les pages correspondantes et la connextion des utilisateurs.
 
-### Structure du projet
+### 2.1 Structure du projet
 
 ```bash
 <?php
@@ -121,7 +121,7 @@ Dans ce projet, le travail le plus important a consisté à récupérer les donn
 
 ```
 
-### Classes
+### 2.2 Classes
 
 Les classes jouent un rôle essentiel dans ce projet, et en termes de dénomination, j'ai veillé à adopter la notation **PascalCase** pour nommer mes classes.
 
@@ -129,7 +129,7 @@ Compte tenu de la complexité de la structure de la base de données, notamment 
 
 L'objectif est de maximiser la séparation entre les différentes classes, assignant à chacune une responsabilité spécifique. Cela facilite la maintenance du code en rendant la lisibilité plus claire et le développement plus aisé.
 
-### Connexion à la base de données
+### 2.3 Connexion à la base de données
 
 En considération de la sécurité des informations de la base de données, le fichier contenant les véritables informations est inclus dans le fichier `.gitignore`.
 
@@ -137,9 +137,9 @@ La fonction chargée de la connexion à la base de données se trouve dans le fi
 
 Ainsi, pour les pages nécessitant l'utilisation des données, il suffit d'appeler cette fonction, ce qui permet d'éviter la redondance de code.
 
-### Fonctionnalités
+### 2.4 Fonctionnalités
 
-#### Opération CRUD
+#### 2.4.1 Opération CRUD
 
 Dans ce projet, j'ai intégré les opérations `SELECT`, `UPDATE`, `INSERT` pour effectuer les requêtes.
 
@@ -151,7 +151,7 @@ Dans ce projet, j'ai intégré les opérations `SELECT`, `UPDATE`, `INSERT` pour
 
 Pour toutes les données saisies par l'utilisateur, j'ai mis en place des requêtes préparées afin d'assurer la sécurité du projet.
 
-#### Connexion/Inscription
+#### 2.4.2 Connexion/Inscription
 
 J'ai créé des formulaires permettant aux utilisateurs de s'inscrire ou de se connecter.
 
@@ -161,7 +161,7 @@ Lorsqu'un utilisateur s'inscrit, il a également la possibilité de télécharge
 
 Pendant la navigation des pages, si un utilisateur demeure connecté, sa photo ainsi que son adresse e-mail, sont affichées dans la barre de navigation.
 
-#### Fonction de filtrage
+#### 2.4.3 Fonction de filtrage
 
 Pour améliorer l'expérience utilisateur, j'ai ajouté une fonction de filtrage permettant aux utilisateurs de sélectionner les cours souhaités en fonction de la **langue**, du **niveau** et des **étiquettes**.
 
@@ -169,17 +169,17 @@ Dans cette partie, le fichier `menuFilter.php` (situé dans le répertoire `layo
 
 Par ailleurs, un petit morceau de code JavaScript gère l'affichage du menu de filtrage. Lorsque l'écran est de petite taille, le contenu du menu est masqué derrière une icône. En cliquant sur cette icône, les options de filtrage sont affichées.
 
-#### Ajout dans la liste de souhaits
+#### 2.4.4 Ajout dans la liste de souhaits
 
 Dans le modèle `course-card.php`, j'ai également inclus une icône de smiley sur chaque carte de cours. Cela offre aux utilisateurs la possibilité d'ajouter les cours qui les intéressent à leur liste de souhaits, un composant accessible depuis la page du compte utilisateur (`account.php`).
 
-## Problèmes rencontrés et limites
+## 3. Problèmes rencontrés et limites
 
-### Remplissage de la base de données
+### 3.1 Remplissage de la base de données
 
 Remplir la base de données est une tâche conséquente qui demande du temps. J'ai eu la chance de bénéficier des scripts élaborés par Monsieur Deloblle, lesquels permettent de générer des données aléatoires pour faciliter ce processus. Cependant, concernant les chapitres, cette étape a nécessité un investissement de temps considérable de ma part.
 
-### Organisation de la structure du projet
+### 3.2 Organisation de la structure du projet
 
 La complexité liée à l'organisation des fichiers et des dossiers dans un projet PHP natif suscite fréquemment des interrogations. Pour améliorer la structure de ce projet, plusieurs aspects méritent attention :
 
@@ -189,7 +189,7 @@ La complexité liée à l'organisation des fichiers et des dossiers dans un proj
 
 -   **Gestion des clés étrangères et des tableaux de transition**: J'ai rencontré quelques difficultés lorsqu'il s'agit de récupérer des données à partir de tableaux contenant des clés étrangères ou des tableaux de transition.
 
-### Factorisation du code
+### 3.3 Factorisation du code
 
 La **factorisation du code** rend le projet plus facile à maintenir et plus lisible.
 
@@ -197,15 +197,15 @@ Cependant, en raison d'un manque de compréhension du concept de factorisation, 
 
 Face à ces défis, j'ai entrepris des recherches de solutions auprès de Monsieur Delobelle, ainsi que sur des sources en ligne telles que Google, des forums français et chinois, et ChatGPT. Ces ressources m'ont permis d'explorer différentes approches pour résoudre ces problèmes spécifiques.
 
-### Gestion des erreurs
+### 3.4 Gestion des erreurs
 
 La gestion des erreurs est un aspect un peu complexe pour moi. Dans ce projet, j'ai mis en place des vérifications pour les adresses e-mail, les numéros de téléphone et l'identification des mots de passe. Cependant, je n'ai pas encore implémenté de vérifications pour la date de naissance ni pour les fichiers téléchargés, notamment en ce qui concerne la taille et le type de fichier. Cela s'explique par le fait que cette implémentation nécessiterait des configurations au niveau du fichier `php.ini`, et je suis un peu réticent à le modifier directement.
 
 Dans le futur, je prévois de me pencher davantage sur ces aspects pour améliorer la gestion des erreurs et renforcer la sécurité du projet.
 
-## Conclusion
+## 4. Conclusion
 
-### Bilan des connaissances acquises
+### 4.1 Bilan des connaissances acquises
 
 Ce projet a été une occasion de consolider l'ensemble des connaissances acquises au cours de la session PHP en les mettant en pratique de manière concrète.
 
@@ -213,7 +213,7 @@ Bien que certaines parties du projet m'aient semblé un peu difficiles et même 
 
 En fin de compte, je suis ravie d'avoir acquis de nouvelles compétences et de les avoir mises en œuvre dans ce projet. Ce parcours d'apprentissage dans le domaine PHP s'est révélé extrêmement enrichissant et motivant. La complexité des concepts abordés a été un défi gratifiant qui a renforcé ma compréhension globale de la programmation PHP.
 
-### Bilan personnel
+### 4.2 Bilan personnel
 
 Ce projet a constitué ma première expérience significative en PHP, et je dois dire que j'ai grandement apprécié cette expérience !
 
@@ -227,7 +227,7 @@ D'un point de vue personnel, ce projet a considérablement influencé ma percept
 
 Dans l'ensemble, cette expérience s'est révélée plutôt positive.
 
-## Améliorations prévues
+### 4.3 Améliorations prévues
 
 Il existe plusieurs aspects du projet qui nécessitent des améliorations, comme mentionné précédemment, notamment la partie administrative, etc.
 
