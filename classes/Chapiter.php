@@ -6,6 +6,11 @@ class Chapiter extends AbstractPdo
 {
     private $courseId;
 
+    /**
+     * Méthode pour récupérer les détails des chapitres d'un cours donné
+     * @param integer $courseId
+     * @return array
+     */
     public function getChaptersDetail(int $courseId): array
     {
         $query = "SELECT * FROM chapiter WHERE course_id = :course_id";
@@ -26,7 +31,11 @@ class Chapiter extends AbstractPdo
         return $chapiterContent;
 
     }
-    // function pour calculer les minutes totales des cours
+    /**
+     *  Méthode pour calculer la durée totale du cours (en minutes)
+     * @param integer $courseId
+     * @return integer
+     */
     public function getTotalCourseDuration(int $courseId): int
     {
         $query = "SELECT SUM(chapiter_duration_minutes) AS total_duration FROM chapiter WHERE course_id = :course_id";

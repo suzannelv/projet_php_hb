@@ -4,12 +4,20 @@ require_once 'AbstractPdo.php';
 
 class CourseTags extends AbstractPdo
 {
+    /**
+     * Méthode pour obtenir tous les tags de cours disponibles
+     * @return array
+     */
     public function getAllTags(): array
     {
         $stmt = $this->pdo->query("SELECT id_tag, tag_name FROM course_tag");
         return $stmt->fetchAll();
     }
-
+    /**
+     * Méthode pour obtenir les tags d'un cours à partir de son identifiant de cours
+     * @param integer $course_id
+     * @return array
+     */
     public function getCourseTags(int $course_id): array
     {
         $stmt = $this->pdo->prepare(

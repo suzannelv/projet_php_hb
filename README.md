@@ -83,7 +83,7 @@ Dans ce projet, le travail le plus important a consisté à récupérer les donn
   |📃Pagination.php ➡️ pas réussi à faire non plus 😢
   |📃SpamChecker.php ➡️ classe vérifier si email est un spam ou pas
   |📃TeacherInfo.php ➡️ classe sur les enseignants
-  |📃Utils.php ➡️ Classe comprenant des méthodes statiques telles que ``headers()`` pour rediriger et convertir les minutes en heures.
+  |📃Utils.php ➡️ Classe comprenant des méthodes statiques telles que ``headers()`` pour rediriger, convertir les minutes en heures et la fonction pour montrer les réultats recherche.
 |📘config
   |📇db.ini
   |📃.gitignore ➡️ (inclure db.ini)
@@ -107,6 +107,7 @@ Dans ce projet, le travail le plus important a consisté à récupérer les donn
 |📃contact.php ➡️ page statique sur le contact
 |📃course.php ➡️ page pour afficher tous les cours (38)
 |📃courseDetail.php ➡️ page détaillée sur chaque cours
+|📃search.php ➡️ page pour afficher les résultats de recherche
 |📃like-btn.php ➡️ fichier pour traiter la fonction d'ajouter les cours sélectionnés dans la liste de voeux
 |📃login.php ➡️ page pour se connecter
 |📃auth.php ➡️ verifier l'identifiant et le mot de passe de l'utilisateur
@@ -157,7 +158,7 @@ J'ai créé des formulaires permettant aux utilisateurs de s'inscrire ou de se c
 
 Au niveau des classes, j'ai implémenté des vérifications visant à identifier et examiner d'éventuelles erreurs, telles que le format du numéro de téléphone, la validité des adresses e-mail, etc.
 
-Lorsqu'un utilisateur s'inscrit, il a également la possibilité de télécharger sa photo de profil.
+Lorsqu'un utilisateur s'inscrit, il a la possibilité de télécharger sa photo de profil. Si l'utilisateur choisit de ne pas télécharger de photo, une image par défaut sera attribuée à son profil.
 
 Pendant la navigation des pages, si un utilisateur demeure connecté, sa photo ainsi que son adresse e-mail, sont affichées dans la barre de navigation.
 
@@ -169,9 +170,15 @@ Dans cette partie, le fichier `menuFilter.php` (situé dans le répertoire `layo
 
 Par ailleurs, un petit morceau de code JavaScript gère l'affichage du menu de filtrage. Lorsque l'écran est de petite taille, le contenu du menu est masqué derrière une icône. En cliquant sur cette icône, les options de filtrage sont affichées.
 
-#### 2.4.4 Ajout dans la liste de souhaits
+#### 2.4.4 Fonction pour le champ de recherche
 
-Dans le modèle `course-card.php`, j'ai également inclus une icône de smiley sur chaque carte de cours. Cela offre aux utilisateurs la possibilité d'ajouter les cours qui les intéressent à leur liste de souhaits, un composant accessible depuis la page du compte utilisateur (`account.php`).
+J'ai également créé une fonction de recherche permettant aux utilisateurs de saisir des mots-clés dans le champ de recherche (ici, j'ai comparé les noms des cours avec le contenu saisi). En cas d'absence de résultats correspondants, un message tel que "Aucun résultat trouvé pour votre recherche 'xxx'" s'affichera sur la page.
+
+#### 2.4.5 Ajout dans la liste de souhaits
+
+Dans le modèle `course-card.php`, une icône de smiley a été intégrée à chaque carte de cours. Cela offre aux utilisateurs la possibilité d'ajouter les cours qui les intéressent à leur liste de souhaits, un composant accessible depuis la page du compte utilisateur (`account.php`).
+
+Par l'intermédiaire de leur liste de souhaits, les utilisateurs peuvent accéder directement aux cours qui les intéressent via un lien dédié.
 
 ## 3. Problèmes rencontrés et limites
 
