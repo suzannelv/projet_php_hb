@@ -50,8 +50,8 @@ $userWishlistCourses = $wishlistCourses->getWishlistCourses($_SESSION['userInfos
                         <span class="text-sm text-gray-500 dark:text-gray-400">
                             Numéro de téléphne: <?php echo $_SESSION['userInfos']['phoneNumber']; ?>
                         </span>
-                        <a href="updateInfo.php" type="button" class="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <i class="fa-solid fa-cat"></i>
+                        <a href="updateInfo.php" type="button" class="mt-5 px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                            <i class="fa-solid fa-cat mr-2"></i>
                             Modifier
                         </a>
                     </div>
